@@ -5,6 +5,116 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jabess Omane | Portfolio</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    :root {
+      --primary: #c85a54;
+      --secondary: #f4e3d7;
+      --accent: #f6aa60;
+      --text: #2e2e2e;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--secondary);
+      color: var(--text);
+      transition: background 0.3s ease;
+    }
+
+    nav {
+      background: var(--primary);
+      padding: 1em;
+      display: flex;
+      justify-content: center;
+      gap: 2em;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 2em;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      margin-top: 2em;
+      transition: transform 0.3s;
+    }
+
+    .container:hover {
+      transform: scale(1.01);
+    }
+
+    h1, h2 {
+      color: var(--primary);
+    }
+
+    .post {
+      margin-bottom: 1.5em;
+    }
+
+    .post h3 {
+      margin-bottom: 0.3em;
+      color: var(--accent);
+    }
+
+    .post p {
+      font-size: 0.95em;
+      line-height: 1.6;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+    }
+
+    input, textarea {
+      padding: 0.75em;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+    }
+
+    button, .resume-button {
+      background-color: var(--primary);
+      color: white;
+      padding: 0.75em 1.5em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1em;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 1em;
+    }
+
+    button:hover, .resume-button:hover {
+      background-color: var(--accent);
+    }
+
+    .socials {
+      text-align: center;
+      margin-top: 1em;
+    }
+
+    .socials a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
   <!-- Navbar -->
@@ -19,6 +129,7 @@
   <section id="home" class="container">
     <h1>Hello, I'm Jabess Omane</h1>
     <p>A Data Scientist & Mechatronics Engineer who writes human-centered tech stories on Medium.</p>
+    <a href="resume.pdf" download class="resume-button">📄 Download Resume</a>
   </section>
 
   <!-- About Section -->
@@ -39,7 +150,21 @@
   <!-- Contact Section -->
   <section id="contact" class="container">
     <h2>Contact</h2>
-    <p>Let’s collaborate! You can reach me at <a href="mailto:jabess@example.com">jabess@example.com</a></p>
+    <p>Let’s collaborate! You can reach me at <a href="mailto:omanijabess47@gmail.com">omanijabess47@gmail.com</a></p>
+
+    <form action="https://formspree.io/f/mnqeykza" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+
+    <div class="socials">
+      <h3>Find me online</h3>
+      <a href="https://www.linkedin.com/in/jabess-omane-75919b225" target="_blank">LinkedIn</a>
+      <a href="https://medium.com/@omanijabess47" target="_blank">Medium</a>
+      <a href="https://instagram.com/1sonof_glory" target="_blank">Instagram</a>
+    </div>
   </section>
 
   <!-- Footer -->
@@ -47,18 +172,18 @@
     &copy; 2025 Jabess Omane. Built with ❤️ and warm colors.
   </footer>
 
-  <!-- ✅ Medium Feed Script -->
+  <!-- Medium Feed Script -->
   <script>
-    const username = 'omanijabess47'; // ✅ Your actual Medium username
+    const username = 'omanijabess47';
     const rssToJson = `https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@${username}`;
 
     fetch(rssToJson)
       .then(response => response.json())
       .then(data => {
         const postsDiv = document.getElementById('medium-posts');
-        const posts = data.items.slice(0, 3);
+        const posts = data.items.slice(0, 5);
 
-        postsDiv.innerHTML = ''; // Clear "Loading stories..." text
+        postsDiv.innerHTML = '';
 
         posts.forEach(post => {
           const postEl = document.createElement('div');
