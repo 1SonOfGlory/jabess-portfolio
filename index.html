@@ -3,29 +3,77 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jabess Omane | Data Scientist & Storyteller</title>
+  <title>Jabess Omane | Portfolio</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="navbar">
-    <h1 class="logo">Jabess Omane</h1>
-    <nav>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="projects.html">Projects</a></li>
-      </ul>
-    </nav>
-  </header>
+  <!-- Navbar -->
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#medium-stories">Stories</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-  <section class="hero">
-    <h2 class="fade-in">Data Scientist & Mechatronics Engineer</h2>
-    <p class="fade-in">Blending logic and creativity to solve real-world problems and tell impactful stories.</p>
-    <a href="projects.html" class="btn fade-in">Explore My Work</a>
+  <!-- Home Section -->
+  <section id="home" class="container">
+    <h1>Hello, I'm Jabess Omane</h1>
+    <p>A Data Scientist & Mechatronics Engineer who writes human-centered tech stories on Medium.</p>
   </section>
 
+  <!-- About Section -->
+  <section id="about" class="container">
+    <h2>About Me</h2>
+    <p>
+      I'm a problem-solver who loves blending machine intelligence with mechanical intuition.
+      I use data to understand the world — and words to make it understandable.
+    </p>
+  </section>
+
+  <!-- Medium Stories Section -->
+  <section id="medium-stories" class="container">
+    <h2>My Latest Stories on Medium</h2>
+    <div id="medium-posts">Loading stories...</div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="container">
+    <h2>Contact</h2>
+    <p>Let’s collaborate! You can reach me at <a href="mailto:jabess@example.com">jabess@example.com</a></p>
+  </section>
+
+  <!-- Footer -->
   <footer>
-    <p>&copy; 2025 Jabess Omane</p>
+    &copy; 2025 Jabess Omane. Built with ❤️ and warm colors.
   </footer>
+
+  <!-- ✅ Medium Feed Script -->
+  <script>
+    const username = 'omanijabess47'; // ✅ Your actual Medium username
+    const rssToJson = `https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@${username}`;
+
+    fetch(rssToJson)
+      .then(response => response.json())
+      .then(data => {
+        const postsDiv = document.getElementById('medium-posts');
+        const posts = data.items.slice(0, 3);
+
+        postsDiv.innerHTML = ''; // Clear "Loading stories..." text
+
+        posts.forEach(post => {
+          const postEl = document.createElement('div');
+          postEl.classList.add('post');
+          postEl.innerHTML = `
+            <h3><a href="${post.link}" target="_blank" rel="noopener">${post.title}</a></h3>
+            <p>${post.description.replace(/(<([^>]+)>)/gi, "").slice(0, 200)}...</p>
+          `;
+          postsDiv.appendChild(postEl);
+        });
+      })
+      .catch(error => {
+        document.getElementById('medium-posts').innerText = 'Unable to load Medium posts.';
+        console.error(error);
+      });
+  </script>
 </body>
 </html>
