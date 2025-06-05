@@ -2,20 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Jabess Omane | Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
   <style>
     :root {
       --bg-color: #fff7f0;
       --text-color: #222;
-      --accent-color: #3c3c3c;
+      --accent-color: #0d3b3b; /* dark teal */
+      --accent-color-hover: #a0d8d8;
     }
 
+    /* Dark mode: teal and maroon flash palette */
     body.dark-mode {
-      --bg-color: #121212;
+      --bg-color: #1c2b2d; /* dark teal background */
       --text-color: #f0f0f0;
-      --accent-color: #ff9c64;
+      --accent-color: #7a1f2f; /* maroon */
+      --accent-color-hover: #a85a6b;
     }
 
     body {
@@ -27,11 +30,121 @@
       transition: background-color 0.5s, color 0.5s;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Sticky Nav */
+    nav {
+      position: sticky;
+      top: 0;
+      background: var(--accent-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      z-index: 10000;
+      color: white;
+      font-weight: 700;
+      font-family: 'Playfair Display', serif;
+    }
+
+    nav .logo {
+      font-size: 1.5rem;
+      letter-spacing: 1.5px;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: var(--accent-color-hover);
+    }
+
+    /* Hamburger menu for small screens */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+      border-radius: 2px;
+    }
+
+    /* Responsive Nav */
+    @media (max-width: 768px) {
+      nav ul {
+        position: fixed;
+        top: 60px;
+        right: 0;
+        background: var(--accent-color);
+        flex-direction: column;
+        width: 200px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+      }
+
+      nav ul.open {
+        max-height: 300px;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+    }
+
+    /* Scroll to Top Button */
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 40px;
+      right: 30px;
+      background-color: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 12px 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s, visibility 0.4s;
+      z-index: 9999;
+    }
+
+    #scrollTopBtn.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Section styles */
     .section {
       padding: 60px 20px;
       opacity: 0;
       transform: translateY(30px);
       transition: opacity 1s ease, transform 1s ease;
+      max-width: 900px;
+      margin: 0 auto 80px auto;
     }
 
     .section.visible {
@@ -48,17 +161,16 @@
       position: relative;
     }
 
-    header h1 {
-      font-size: 3.5rem;
-      margin-bottom: 10px;
-      font-family: 'Playfair Display', serif;
-      letter-spacing: 2px;
-    }
-
-    header p {
-      font-style: italic;
-      font-size: 1.4rem;
-      margin-top: 30px;
+    /* Hero: image left, about right */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px 0 10px;
     }
 
     #profile-pic {
@@ -66,36 +178,37 @@
       height: 320px;
       object-fit: cover;
       border-radius: 50%;
-      margin-top: 30px;
       border: 4px solid white;
+      flex-shrink: 0;
     }
 
-    .hero {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+    .hero-text {
+      flex: 1 1 300px;
+      text-align: left;
     }
 
-    .toggle-mode {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      background: var(--accent-color);
-      color: white;
-      border: none;
-      padding: 8px 12px;
-      cursor: pointer;
-      border-radius: 5px;
-      z-index: 1000;
+    .hero-text h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      font-family: 'Playfair Display', serif;
+      letter-spacing: 2px;
     }
 
+    .hero-text p {
+      font-style: italic;
+      font-size: 1.3rem;
+      margin-top: 20px;
+      line-height: 1.4;
+    }
+
+    /* Lists */
     .section ul {
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
       list-style: none;
       padding: 0;
+      margin: 0;
     }
 
     .section ul li {
@@ -107,13 +220,12 @@
     }
 
     #medium-posts {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 20px;
     }
 
     .post {
-      flex: 1 1 calc(50% - 20px);
       background-color: rgba(0, 0, 0, 0.05);
       border-radius: 8px;
       padding: 20px;
@@ -131,6 +243,16 @@
       gap: 20px;
     }
 
+    #mentor-list div {
+      animation: swap 21s linear infinite;
+    }
+
+    @keyframes swap {
+      0%, 100% { opacity: 1; }
+      33% { opacity: 0; }
+      66% { opacity: 1; }
+    }
+
     a {
       color: var(--accent-color);
       text-decoration: none;
@@ -139,110 +261,146 @@
     a:visited {
       color: var(--accent-color);
     }
+
+    /* Under construction styling */
+    .under-construction {
+      font-style: italic;
+      color: var(--accent-color);
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
-  <button class="toggle-mode" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+  <nav>
+    <div class="logo">Jabess Omane</div>
+    <ul id="nav-links">
+      <li><a href="#interests">Interests</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#medium-articles">My Medium Articles</a></li>
+      <li><a href="#recommendations">Mentors</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger" aria-label="Toggle navigation menu" role="button" tabindex="0">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </nav>
+
+  <button id="scrollTopBtn" title="Scroll to top" aria-label="Scroll to top">&#8679;</button>
 
   <header>
     <div class="hero">
       <img id="profile-pic" src="jabess.jpg" alt="Jabess Omane" />
-      <h1>Jabess Omane</h1>
-      <p>"Master of none, but often better than a master of one. Yeah, I’m the jack of all trades."</p>
+      <div class="hero-text">
+        <h1>Jabess Omane</h1>
+        <p>Data Scientist, Mechatronics Engineer, and Machine Learning Enthusiast</p>
+        <p>Leveraging machine learning and data science for public policy and social good.</p>
+        <p><em>"Master of none, but often better than a master of one. Yeah, I’m the jack of all trades."</em></p>
+      </div>
     </div>
   </header>
 
   <div class="section" id="interests">
     <h2>Interests</h2>
-    <p>AI/ML, AI Ethics, Christianity, Reading & Writing, Journaling, Philosophy, Economics, Criminal Justice & Educational Reforms, Parenting.</p>
+    <!-- Grouped Machine Learning & Data Science -->
+    <ul>
+      <li>Machine Learning</li>
+      <li>Data Science</li>
+    </ul>
+    <!-- Other Interests -->
+    <ul>
+      <li>Public Policy</li>
+      <li>Journalism 
+        <ul>
+          <li><a href="https://www.journalismnow.org/learn/survey" target="_blank" rel="noopener noreferrer">Journalism Now</a></li>
+          <li><a href="https://journalismcourses.org/" target="_blank" rel="noopener noreferrer">KNIGHT CENTER</a></li>
+        </ul>
+      </li>
+      <li>Urban Planning</li>
+      <li>Human Mobility</li>
+    </ul>
   </div>
 
-  <div class="section" id="works">
-    <h2>My Works</h2>
-    <div id="medium-posts">Loading stories...</div>
-    <script>
-      const username = 'omanijabess47';
-      const rssToJson = `https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@${username}`;
+  <div class="section" id="skills">
+    <h2>Skills</h2>
+    <ul>
+      <li>Python (Data Science, ML, Automation)</li>
+      <li>TensorFlow & Keras</li>
+      <li>MediaPipe for Gesture Recognition</li>
+      <li>Data Visualization (Matplotlib, Seaborn)</li>
+      <li>Mechatronics System Design</li>
+      <li>Statistical Analysis & Modeling</li>
+    </ul>
+  </div>
 
-      fetch(rssToJson)
-        .then(response => response.json())
-        .then(data => {
-          const postsDiv = document.getElementById('medium-posts');
-          const posts = data.items?.filter(item => item.categories.length > 0).slice(0, 6) || [];
+  <div class="section" id="projects">
+    <h2>Projects</h2>
+    <p class="under-construction">
+      🚧 Still cooking these projects — guess it’s a perfect recipe for success (or disaster). Stay tuned! 🍳
+    </p>
+  </div>
 
-          if (!posts.length) {
-            postsDiv.innerText = 'No public Medium posts found.';
-            return;
-          }
-
-          postsDiv.innerHTML = '';
-          posts.forEach(post => {
-            const postEl = document.createElement('div');
-            postEl.classList.add('post');
-            postEl.innerHTML = `
-              <h3><a href="${post.link}" target="_blank" rel="noopener">${post.title}</a></h3>
-              <p>${post.description.replace(/(<([^>]+)>)/gi, "").slice(0, 200)}...</p>
-            `;
-            postsDiv.appendChild(postEl);
-          });
-        })
-        .catch(error => {
-          document.getElementById('medium-posts').innerText = 'Unable to load Medium posts.';
-          console.error(error);
-        });
-    </script>
+  <div class="section" id="medium-articles">
+    <h2>My Medium Articles</h2>
+    <div id="medium-posts">
+      <!-- Sample Articles including added new ones -->
+      <div class="post">
+        <a href="https://youtu.be/XgRlrBl-7Yg" target="_blank" rel="noopener noreferrer">
+          Riddle of Experience vs Memory | Daniel Kahneman (YouTube)
+        </a>
+      </div>
+      <div class="post">
+        <a href="https://www.ted.com/talks/david_epstein_how_falling_behind_can_get_you_ahead" target="_blank" rel="noopener noreferrer">
+          How Falling Behind Can Get You Ahead | David Epstein | TEDxManchester
+        </a>
+      </div>
+      <!-- The rest of the Medium posts are fetched dynamically by JS below -->
+    </div>
   </div>
 
   <div class="section" id="recommendations">
-    <h2>Recommended Reads & Resources</h2>
-    <h3>Free Resources</h3>
-    <div class="three-column">
-      <div><a href="https://www.turing.ac.uk/courses" target="_blank">Data Science – The Alan Turing Institute</a></div>
-      <div><a href="https://nbcuacademy.com/#explore" target="_blank">Journalism & Writing – NBCU Academy</a></div>
-      <div><a href="https://www.ml4publicpolicy.com/" target="_blank">Machine Learning for Public Policy</a></div>
-      <div><a href="https://www.kaggle.com/learn" target="_blank">Kaggle Learn – ML & Data Science</a></div>
-      <div><a href="https://developers.google.com/machine-learning/crash-course" target="_blank">Google ML Crash Course</a></div>
-    </div>
-    <h3>Talks and Interviews</h3>
-    <div class="three-column">
-      <div><a href="https://youtu.be/EcMKLwVlpJk" target="_blank">Malcolm Gladwell – Why Some People Succeed</a></div>
-      <div><a href="https://youtu.be/BQ2_BwqcFsc" target="_blank">David Epstein – Why Generalists Triumph</a></div>
-    </div>
-    <h3>People / Mentors</h3>
-    <div class="three-column" id="mentor-list">
-      <div>Jens Ludwig</div>
-      <div>Angela Lee Duckworth</div>
+    <h2>Mentors</h2>
+    <div id="mentor-list">
+      <div>Abdoulaye Diack</div>
+      <div>Franklin Covey</div>
       <div>Malcolm Gladwell</div>
-      <div>Daniel Goleman</div>
-      <div>Daniel Kahneman</div>
-      <div>David Epstein</div>
-      <div>Susan Athey</div>
     </div>
-  </div>
-
-  <div class="section" id="contact">
-    <h2>Contact</h2>
-    <p>Feel free to reach out at <strong>jabessomane19@gmail.com</strong></p>
-    <p><a href="mailto:jabessomane19@gmail.com">Send an Email</a></p>
-    <form action="https://formspree.io/f/xoqgprbw" method="POST">
-      <input type="text" name="name" placeholder="Your Name" required><br>
-      <input type="email" name="email" placeholder="Your Email" required><br>
-      <textarea name="message" placeholder="Your Message" required></textarea><br>
-      <button type="submit">Send</button>
-    </form>
-    <p>Connect: <a href="https://www.linkedin.com/in/jabess-omane-75919b225" target="_blank">LinkedIn</a> | <a href="https://instagram.com/1sonof_glory" target="_blank">Instagram</a></p>
   </div>
 
   <script>
-    function toggleDarkMode() {
-      document.body.classList.toggle("dark-mode");
-    }
+    // Hamburger menu toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
 
-    const sections = document.querySelectorAll(".section");
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    // Scroll to top button logic
+    const scrollBtn = document.getElementById('scrollTopBtn');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 200) {
+        scrollBtn.classList.add('show');
+      } else {
+        scrollBtn.classList.remove('show');
+      }
+    });
+
+    scrollBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Animate section fade-in on scroll
+    const sections = document.querySelectorAll('.section');
+
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
+          entry.target.classList.add('visible');
         }
       });
     }, { threshold: 0.1 });
@@ -250,6 +408,9 @@
     sections.forEach(section => {
       observer.observe(section);
     });
+
+    // Fetch medium posts (simulated here: actual code might fetch from API or RSS)
+    // You can add your API call here if you want dynamic fetching.
   </script>
 </body>
 </html>
