@@ -10,15 +10,12 @@
       --bg-color: #fff7f0;
       --text-color: #222;
       --accent-color: #0d3b3b; /* dark teal */
-      --accent-color-hover: #a0d8d8;
     }
 
-    /* Dark mode: teal and maroon flash palette */
     body.dark-mode {
-      --bg-color: #1c2b2d; /* dark teal background */
+      --bg-color: #121212;
       --text-color: #f0f0f0;
-      --accent-color: #7a1f2f; /* maroon */
-      --accent-color-hover: #a85a6b;
+      --accent-color: #00796b; /* dark teal for dark mode */
     }
 
     body {
@@ -71,7 +68,7 @@
     }
 
     nav ul li a:hover {
-      color: var(--accent-color-hover);
+      color: #a0d8d8;
     }
 
     /* Hamburger menu for small screens */
@@ -270,6 +267,7 @@
       font-size: 1.2rem;
       margin-top: 20px;
     }
+
   </style>
 </head>
 <body>
@@ -279,17 +277,17 @@
       <li><a href="#interests">Interests</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#projects">Projects</a></li>
-      <li><a href="#medium-articles">My Medium Articles</a></li>
+      <li><a href="#works">Writings</a></li>
       <li><a href="#recommendations">Mentors</a></li>
     </ul>
-    <div class="hamburger" id="hamburger" aria-label="Toggle navigation menu" role="button" tabindex="0">
+    <div class="hamburger" id="hamburger">
       <div></div>
       <div></div>
       <div></div>
     </div>
   </nav>
 
-  <button id="scrollTopBtn" title="Scroll to top" aria-label="Scroll to top">&#8679;</button>
+  <button id="scrollTopBtn" title="Scroll to top">&#8679;</button>
 
   <header>
     <div class="hero">
@@ -305,66 +303,49 @@
 
   <div class="section" id="interests">
     <h2>Interests</h2>
-    <!-- Grouped Machine Learning & Data Science -->
-    <ul>
-      <li>Machine Learning</li>
-      <li>Data Science</li>
-    </ul>
-    <!-- Other Interests -->
-    <ul>
-      <li>Public Policy</li>
-      <li>Journalism 
-        <ul>
-          <li><a href="https://www.journalismnow.org/learn/survey" target="_blank" rel="noopener noreferrer">Journalism Now</a></li>
-          <li><a href="https://journalismcourses.org/" target="_blank" rel="noopener noreferrer">KNIGHT CENTER</a></li>
-        </ul>
-      </li>
-      <li>Urban Planning</li>
-      <li>Human Mobility</li>
-    </ul>
+    <p>AI/ML, AI Ethics, Christianity, Reading & Writing, Journaling, Philosophy, Economics, Criminal Justice & Educational Reforms, Parenting.</p>
   </div>
 
   <div class="section" id="skills">
     <h2>Skills</h2>
-    <ul>
-      <li>Python (Data Science, ML, Automation)</li>
-      <li>TensorFlow & Keras</li>
-      <li>MediaPipe for Gesture Recognition</li>
-      <li>Data Visualization (Matplotlib, Seaborn)</li>
-      <li>Mechatronics System Design</li>
-      <li>Statistical Analysis & Modeling</li>
-    </ul>
+    <p class="under-construction">Cooking up some skills here... Please check back soon! 🍳👨‍🍳</p>
   </div>
 
   <div class="section" id="projects">
     <h2>Projects</h2>
-    <p class="under-construction">
-      🚧 Still cooking these projects — guess it’s a perfect recipe for success (or disaster). Stay tuned! 🍳
-    </p>
+    <p class="under-construction">Projects are still marinating... Stay tuned for the delicious reveal! 🍲🚀</p>
   </div>
 
-  <div class="section" id="medium-articles">
-    <h2>My Medium Articles</h2>
-    <div id="medium-posts">
-      <!-- Sample Articles including added new ones -->
-      <div class="post">
-        <a href="https://youtu.be/XgRlrBl-7Yg" target="_blank" rel="noopener noreferrer">
-          Riddle of Experience vs Memory | Daniel Kahneman (YouTube)
-        </a>
-      </div>
-      <div class="post">
-        <a href="https://www.ted.com/talks/david_epstein_how_falling_behind_can_get_you_ahead" target="_blank" rel="noopener noreferrer">
-          How Falling Behind Can Get You Ahead | David Epstein | TEDxManchester
-        </a>
-      </div>
-      <!-- The rest of the Medium posts are fetched dynamically by JS below -->
-    </div>
+  <div class="section" id="works">
+    <h2>My Works</h2>
+    <div id="medium-posts">Loading stories...</div>
+    <script>
+      const username = 'omanijabess47';
+      const rssToJson = `https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@${username}`;
+
+      fetch(rssToJson)
+        .then((response) => response.json())
+        .then((data) => {
+          const container = document.getElementById('medium-posts');
+          container.innerHTML = '';
+          data.items.slice(0, 6).forEach(post => {
+            const div = document.createElement('div');
+            div.className = 'post';
+            div.innerHTML = `<a href="${post.link}" target="_blank" rel="noopener noreferrer">${post.title}</a>`;
+            container.appendChild(div);
+          });
+        })
+        .catch(() => {
+          document.getElementById('medium-posts').innerText = 'Failed to load stories.';
+        });
+    </script>
   </div>
 
   <div class="section" id="recommendations">
     <h2>Mentors</h2>
     <div id="mentor-list">
-      <div>Abdoulaye Diack</div>
+      <div>Franklin Covey</div>
+      <div>Malcolm Gladwell</div>
       <div>Franklin Covey</div>
       <div>Malcolm Gladwell</div>
     </div>
@@ -408,9 +389,6 @@
     sections.forEach(section => {
       observer.observe(section);
     });
-
-    // Fetch medium posts (simulated here: actual code might fetch from API or RSS)
-    // You can add your API call here if you want dynamic fetching.
   </script>
 </body>
 </html>
