@@ -4,175 +4,163 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jabess Omane | Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      --primary: #c85a54;
-      --secondary: #f4e3d7;
-      --accent: #f6aa60;
-      --text: #2e2e2e;
-    }
-
-    body {
+    * {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: var(--secondary);
-      color: var(--text);
-      transition: background 0.3s ease;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
     }
-
-    nav {
-      background: var(--primary);
-      padding: 1em;
-      display: flex;
-      justify-content: center;
-      gap: 2em;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s;
-    }
-
-    nav a:hover {
-      color: var(--accent);
-    }
-
-    .container {
-      max-width: 800px;
-      margin: auto;
-      padding: 2em;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      margin-top: 2em;
-      transition: transform 0.3s;
-    }
-
-    .container:hover {
-      transform: scale(1.01);
-    }
-
-    h1, h2 {
-      color: var(--primary);
-    }
-
-    .post {
-      margin-bottom: 1.5em;
-    }
-
-    .post h3 {
-      margin-bottom: 0.3em;
-      color: var(--accent);
-    }
-
-    .post p {
-      font-size: 0.95em;
+    body {
+      background: #fff7f0;
+      color: #2d2d2d;
       line-height: 1.6;
     }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 1em;
-    }
-
-    input, textarea {
-      padding: 0.75em;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 1em;
-    }
-
-    button, .resume-button {
-      background-color: var(--primary);
+    header {
+      background: #fa8c6d;
       color: white;
-      padding: 0.75em 1.5em;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 1em;
-      text-decoration: none;
-      display: inline-block;
-      margin-top: 1em;
-    }
-
-    button:hover, .resume-button:hover {
-      background-color: var(--accent);
-    }
-
-    .socials {
+      padding: 2rem;
       text-align: center;
-      margin-top: 1em;
+      animation: fadeIn 1s ease-in-out;
     }
-
+    header img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin-top: 1rem;
+    }
+    section {
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+    h2 {
+      color: #fa8c6d;
+      margin-bottom: 1rem;
+    }
+    .post, .resource {
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      background: #fff;
+      border-left: 4px solid #fa8c6d;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .form-field {
+      margin-bottom: 1rem;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background: #fa8c6d;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
     .socials a {
-      margin: 0 10px;
-      text-decoration: none;
-      color: var(--primary);
+      margin-right: 1rem;
+      color: #fa8c6d;
       font-weight: bold;
+      text-decoration: none;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-10px);}
+      to {opacity: 1; transform: translateY(0);}
     }
   </style>
 </head>
 <body>
-  <!-- Navbar -->
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#medium-stories">Stories</a>
-    <a href="#contact">Contact</a>
-  </nav>
+  <header>
+    <h1>Jabess Omane</h1>
+    <p>"Master of none, but often better than a master of one — yeah, I'm the jack of all trades." ✨</p>
+    <img src="your-photo.jpg" alt="Jabess Omane profile picture" />
+  </header>
 
-  <!-- Home Section -->
-  <section id="home" class="container">
-    <h1>Hello, I'm Jabess Omane</h1>
-    <p>A Data Scientist & Mechatronics Engineer who writes human-centered tech stories on Medium.</p>
-    <a href="resume.pdf" download class="resume-button">📄 Download Resume</a>
-  </section>
-
-  <!-- About Section -->
-  <section id="about" class="container">
+  <section>
     <h2>About Me</h2>
-    <p>
-      I'm a problem-solver who loves blending machine intelligence with mechanical intuition.
-      I use data to understand the world — and words to make it understandable.
-    </p>
+    <p>I am a Mechatronics Engineer by training with a passion for using machine learning and data science to influence public policy and uncover compelling stories. I'm interested in building technologies that don't just solve problems, but spark conversations that matter. As a Christian, writer, and researcher, I believe ideas — when shaped with wisdom — can change the world.</p>
   </section>
 
-  <!-- Medium Stories Section -->
-  <section id="medium-stories" class="container">
-    <h2>My Latest Stories on Medium</h2>
+  <section>
+    <h2>My Interests</h2>
+    <ul>
+      <li>AI/ML & AI Ethics</li>
+      <li>Christianity</li>
+      <li>Reading, Writing & Journaling</li>
+      <li>Philosophy & Economics</li>
+      <li>Criminal Justice & Educational Reforms</li>
+      <li>Parenting</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Recommended Reads & Resources</h2>
+    <div class="resource">"Weapons of Math Destruction" by Cathy O’Neil</div>
+    <div class="resource">"The Alignment Problem" by Brian Christian</div>
+    <div class="resource">"Education and the Significance of Life" by J. Krishnamurti</div>
+    <div class="resource">Harvard's AI for Social Good initiative (Video)</div>
+    <div class="resource">Blog: Towards Data Science – Social Impact</div>
+  </section>
+
+  <section>
+    <h2>Suggest a Resource</h2>
+    <form action="https://formspree.io/f/xleqgdzy" method="POST">
+      <div class="form-field">
+        <label>Your Name (optional)</label>
+        <input type="text" name="name" />
+      </div>
+      <div class="form-field">
+        <label>Resource Link</label>
+        <input type="url" name="link" required />
+      </div>
+      <div class="form-field">
+        <label>Should we share it publicly?</label><br />
+        <input type="checkbox" name="public" value="yes" /> Yes (requires approval)
+      </div>
+      <button type="submit">Submit Recommendation</button>
+    </form>
+  </section>
+
+  <section>
+    <h2>Latest on Medium</h2>
     <div id="medium-posts">Loading stories...</div>
   </section>
 
-  <!-- Contact Section -->
-  <section id="contact" class="container">
-    <h2>Contact</h2>
-    <p>Let’s collaborate! You can reach me at <a href="mailto:omanijabess47@gmail.com">omanijabess47@gmail.com</a></p>
+  <section>
+    <h2>Resume</h2>
+    <a href="resume.pdf" download><button>Download My Resume</button></a>
+  </section>
 
-    <form action="https://formspree.io/f/mnqeykza" method="POST">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-
+  <section>
+    <h2>Let's Connect</h2>
     <div class="socials">
-      <h3>Find me online</h3>
-      <a href="https://www.linkedin.com/in/jabess-omane-75919b225" target="_blank">LinkedIn</a>
+      <a href="https://linkedin.com/in/jabess-omane-75919b225" target="_blank">LinkedIn</a>
       <a href="https://medium.com/@omanijabess47" target="_blank">Medium</a>
       <a href="https://instagram.com/1sonof_glory" target="_blank">Instagram</a>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer>
-    &copy; 2025 Jabess Omane. Built with ❤️ and warm colors.
-  </footer>
+  <section>
+    <h2>Contact</h2>
+    <form action="https://formspree.io/f/xleqgdzy" method="POST">
+      <div class="form-field">
+        <label>Email</label>
+        <input type="email" name="email" required />
+      </div>
+      <div class="form-field">
+        <label>Message</label>
+        <textarea name="message" rows="5" required></textarea>
+      </div>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
 
-  <!-- Medium Feed Script -->
   <script>
     const username = 'omanijabess47';
     const rssToJson = `https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@${username}`;
@@ -182,7 +170,6 @@
       .then(data => {
         const postsDiv = document.getElementById('medium-posts');
         const posts = data.items.slice(0, 5);
-
         postsDiv.innerHTML = '';
 
         posts.forEach(post => {
