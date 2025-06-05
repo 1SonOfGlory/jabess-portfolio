@@ -45,6 +45,7 @@
       text-align: center;
       padding: 80px 20px;
       font-family: 'Playfair Display', serif;
+      position: relative;
     }
 
     header h1 {
@@ -61,11 +62,19 @@
     }
 
     #profile-pic {
-      width: 350px;
-      height: auto;
-      object-fit: contain;
-      border-radius: 10px;
-      margin-top: 20px;
+      width: 320px;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-top: 30px;
+      border: 4px solid white;
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
     .toggle-mode {
@@ -97,6 +106,31 @@
       transition: opacity 1s ease-in-out;
     }
 
+    #medium-posts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .post {
+      flex: 1 1 calc(50% - 20px);
+      background-color: rgba(0, 0, 0, 0.05);
+      border-radius: 8px;
+      padding: 20px;
+      transition: all 0.5s ease;
+    }
+
+    .post:hover {
+      transform: translateY(-5px);
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .three-column {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
     a {
       color: var(--accent-color);
       text-decoration: none;
@@ -111,9 +145,11 @@
   <button class="toggle-mode" onclick="toggleDarkMode()">Toggle Dark Mode</button>
 
   <header>
-    <h1>Jabess Omane</h1>
-    <p>"Master of none, but often better than a master of one. Yeah, I’m the jack of all trades."</p>
-    <img id="profile-pic" src="jabess.jpg" alt="Jabess Omane" />
+    <div class="hero">
+      <img id="profile-pic" src="jabess.jpg" alt="Jabess Omane" />
+      <h1>Jabess Omane</h1>
+      <p>"Master of none, but often better than a master of one. Yeah, I’m the jack of all trades."</p>
+    </div>
   </header>
 
   <div class="section" id="interests">
@@ -132,7 +168,12 @@
         .then(response => response.json())
         .then(data => {
           const postsDiv = document.getElementById('medium-posts');
-          const posts = data.items.slice(0, 5);
+          const posts = data.items?.filter(item => item.categories.length > 0).slice(0, 6) || [];
+
+          if (!posts.length) {
+            postsDiv.innerText = 'No public Medium posts found.';
+            return;
+          }
 
           postsDiv.innerHTML = '';
           posts.forEach(post => {
@@ -155,26 +196,28 @@
   <div class="section" id="recommendations">
     <h2>Recommended Reads & Resources</h2>
     <h3>Free Resources</h3>
-    <ul>
-      <li><a href="https://www.turing.ac.uk/courses" target="_blank">Data Science – The Alan Turing Institute</a></li>
-      <li><a href="https://nbcuacademy.com/#explore" target="_blank">Journalism & Writing – NBCU Academy</a></li>
-      <li><a href="https://www.ml4publicpolicy.com/" target="_blank">Machine Learning for Public Policy</a></li>
-    </ul>
+    <div class="three-column">
+      <div><a href="https://www.turing.ac.uk/courses" target="_blank">Data Science – The Alan Turing Institute</a></div>
+      <div><a href="https://nbcuacademy.com/#explore" target="_blank">Journalism & Writing – NBCU Academy</a></div>
+      <div><a href="https://www.ml4publicpolicy.com/" target="_blank">Machine Learning for Public Policy</a></div>
+      <div><a href="https://www.kaggle.com/learn" target="_blank">Kaggle Learn – ML & Data Science</a></div>
+      <div><a href="https://developers.google.com/machine-learning/crash-course" target="_blank">Google ML Crash Course</a></div>
+    </div>
     <h3>Talks and Interviews</h3>
-    <ul>
-      <li><a href="https://youtu.be/EcMKLwVlpJk" target="_blank">Malcolm Gladwell – Why Some People Succeed</a></li>
-      <li><a href="https://youtu.be/BQ2_BwqcFsc" target="_blank">David Epstein – Why Generalists Triumph</a></li>
-    </ul>
+    <div class="three-column">
+      <div><a href="https://youtu.be/EcMKLwVlpJk" target="_blank">Malcolm Gladwell – Why Some People Succeed</a></div>
+      <div><a href="https://youtu.be/BQ2_BwqcFsc" target="_blank">David Epstein – Why Generalists Triumph</a></div>
+    </div>
     <h3>People / Mentors</h3>
-    <ul>
-      <li>Jens Ludwig</li>
-      <li>Susan Athey</li>
-      <li>Malcolm Gladwell</li>
-      <li>Daniel Goleman</li>
-      <li>Daniel Kahneman</li>
-      <li>Angela Lee Duckworth</li>
-      <li>David Epstein</li>
-    </ul>
+    <div class="three-column" id="mentor-list">
+      <div>Jens Ludwig</div>
+      <div>Angela Lee Duckworth</div>
+      <div>Malcolm Gladwell</div>
+      <div>Daniel Goleman</div>
+      <div>Daniel Kahneman</div>
+      <div>David Epstein</div>
+      <div>Susan Athey</div>
+    </div>
   </div>
 
   <div class="section" id="contact">
