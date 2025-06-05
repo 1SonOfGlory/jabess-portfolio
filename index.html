@@ -1,211 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jabess Omane | Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root {
+      --bg-color: #fff7f0;
+      --text-color: #222;
+      --accent-color: #3c3c3c;
+    }
+
+    body.dark-mode {
+      --bg-color: #121212;
+      --text-color: #f0f0f0;
+      --accent-color: #ff9c64;
     }
 
     body {
       font-family: 'Inter', sans-serif;
-      background: #f4f6f8;
-      color: #1c1e21;
-      line-height: 1.6;
-      overflow-x: hidden;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.5s, color 0.5s;
     }
 
-    header {
-      height: 100vh;
-      background: linear-gradient(135deg, #6bd4df, #66a6ff);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 2rem;
-    }
-
-    header img {
-      width: 180px;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 50%;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    header h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      color: #fff;
-      margin-bottom: 1rem;
-    }
-
-    header p {
-      font-size: 1.2rem;
-      color: #eef3f6;
-      max-width: 600px;
-    }
-
-    section {
-      padding: 4rem 2rem;
+    .section {
+      padding: 60px 20px;
       opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.6s ease-out;
+      transform: translateY(30px);
+      transition: opacity 1s ease, transform 1s ease;
     }
 
-    section.visible {
+    .section.visible {
       opacity: 1;
       transform: translateY(0);
     }
 
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      color: #224;
+    header {
+      background-color: var(--accent-color);
+      color: white;
+      text-align: center;
+      padding: 80px 20px;
+      font-family: 'Playfair Display', serif;
     }
 
-    ul, p {
-      max-width: 800px;
-      margin: auto;
+    header h1 {
+      font-size: 3.5rem;
+      margin-bottom: 10px;
+      font-family: 'Playfair Display', serif;
+      letter-spacing: 2px;
     }
 
-    .flex {
+    header p {
+      font-style: italic;
+      font-size: 1.4rem;
+      margin-top: 30px;
+    }
+
+    #profile-pic {
+      width: 350px;
+      height: auto;
+      object-fit: contain;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+
+    .toggle-mode {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+      border-radius: 5px;
+      z-index: 1000;
+    }
+
+    .section ul {
       display: flex;
       flex-wrap: wrap;
-      gap: 2rem;
-      justify-content: center;
+      gap: 20px;
+      list-style: none;
+      padding: 0;
     }
 
-    .post, .recommendation {
-      background: #fff;
-      padding: 1.5rem;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-      width: 300px;
+    .section ul li {
+      flex: 1 1 calc(50% - 20px);
+      background: rgba(0, 0, 0, 0.05);
+      padding: 10px;
+      border-radius: 8px;
+      transition: opacity 1s ease-in-out;
     }
 
     a {
-      color: #2266aa;
+      color: var(--accent-color);
       text-decoration: none;
     }
 
     a:visited {
-      color: #2266aa;
-    }
-
-    form input, form textarea, form button {
-      width: 100%;
-      margin: 0.5rem 0;
-      padding: 0.75rem;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-    }
-
-    .socials a {
-      margin: 0 1rem;
-      color: #2266aa;
+      color: var(--accent-color);
     }
   </style>
 </head>
-
 <body>
+  <button class="toggle-mode" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+
   <header>
-    <img src="jabess.jpg" alt="Jabess Omane">
     <h1>Jabess Omane</h1>
-    <p>“Master of none, but often better than a master of one. Yeah, I’m the jack of all trades.”</p>
+    <p>"Master of none, but often better than a master of one. Yeah, I’m the jack of all trades."</p>
+    <img id="profile-pic" src="jabess.jpg" alt="Jabess Omane" />
   </header>
 
-  <section id="interests">
+  <div class="section" id="interests">
     <h2>Interests</h2>
-    <p>I’m a mechatronics engineer by training, but my mind ventures far beyond mechanics. I’m passionate about using machine learning for public policy, not just to solve problems but to tell compelling data-driven stories. My interests include AI/ML, AI ethics, Christianity, philosophy, economics, education reform, parenting, criminal justice, journaling, reading, and writing.</p>
-  </section>
+    <p>AI/ML, AI Ethics, Christianity, Reading & Writing, Journaling, Philosophy, Economics, Criminal Justice & Educational Reforms, Parenting.</p>
+  </div>
 
-  <section id="works">
+  <div class="section" id="works">
     <h2>My Works</h2>
     <div id="medium-posts">Loading stories...</div>
-  </section>
+    <script>
+      const username = 'omanijabess47';
+      const rssToJson = `https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@${username}`;
 
-  <section id="recommended">
+      fetch(rssToJson)
+        .then(response => response.json())
+        .then(data => {
+          const postsDiv = document.getElementById('medium-posts');
+          const posts = data.items.slice(0, 5);
+
+          postsDiv.innerHTML = '';
+          posts.forEach(post => {
+            const postEl = document.createElement('div');
+            postEl.classList.add('post');
+            postEl.innerHTML = `
+              <h3><a href="${post.link}" target="_blank" rel="noopener">${post.title}</a></h3>
+              <p>${post.description.replace(/(<([^>]+)>)/gi, "").slice(0, 200)}...</p>
+            `;
+            postsDiv.appendChild(postEl);
+          });
+        })
+        .catch(error => {
+          document.getElementById('medium-posts').innerText = 'Unable to load Medium posts.';
+          console.error(error);
+        });
+    </script>
+  </div>
+
+  <div class="section" id="recommendations">
     <h2>Recommended Reads & Resources</h2>
-    <div class="flex">
-      <div class="recommendation">
-        <a href="https://www.ml4publicpolicy.com/" target="_blank">Machine Learning for Public Policy Course</a>
-      </div>
-      <div class="recommendation">
-        <a href="https://learn.turing.ac.uk/course/view.php?id=6" target="_blank">Data Visualisation – Turing Institute</a>
-      </div>
-      <div class="recommendation">
-        <a href="https://learn.turing.ac.uk/course/view.php?id=7" target="_blank">Math of Machine Learning – Turing Institute</a>
-      </div>
-      <div class="recommendation">
-        <a href="https://youtu.be/EcMKLwVlpJk" target="_blank">Outliers – Malcolm Gladwell</a>
-      </div>
-      <div class="recommendation">
-        <a href="https://youtu.be/BQ2_BwqcFsc" target="_blank">Range – David Epstein</a>
-      </div>
-    </div>
-  </section>
+    <h3>Free Resources</h3>
+    <ul>
+      <li><a href="https://www.turing.ac.uk/courses" target="_blank">Data Science – The Alan Turing Institute</a></li>
+      <li><a href="https://nbcuacademy.com/#explore" target="_blank">Journalism & Writing – NBCU Academy</a></li>
+      <li><a href="https://www.ml4publicpolicy.com/" target="_blank">Machine Learning for Public Policy</a></li>
+    </ul>
+    <h3>Talks and Interviews</h3>
+    <ul>
+      <li><a href="https://youtu.be/EcMKLwVlpJk" target="_blank">Malcolm Gladwell – Why Some People Succeed</a></li>
+      <li><a href="https://youtu.be/BQ2_BwqcFsc" target="_blank">David Epstein – Why Generalists Triumph</a></li>
+    </ul>
+    <h3>People / Mentors</h3>
+    <ul>
+      <li>Jens Ludwig</li>
+      <li>Susan Athey</li>
+      <li>Malcolm Gladwell</li>
+      <li>Daniel Goleman</li>
+      <li>Daniel Kahneman</li>
+      <li>Angela Lee Duckworth</li>
+      <li>David Epstein</li>
+    </ul>
+  </div>
 
-  <section id="contact">
-    <h2>Reach Out</h2>
-    <form action="https://formspree.io/f/moqgglqe" method="POST">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" placeholder="Message or Recommendation" rows="5" required></textarea>
-      <label><input type="checkbox" name="public" value="yes"> Allow my recommendation to be published</label>
-      <button type="submit">Send Message</button>
+  <div class="section" id="contact">
+    <h2>Contact</h2>
+    <p>Feel free to reach out at <strong>jabessomane19@gmail.com</strong></p>
+    <p><a href="mailto:jabessomane19@gmail.com">Send an Email</a></p>
+    <form action="https://formspree.io/f/xoqgprbw" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required><br>
+      <input type="email" name="email" placeholder="Your Email" required><br>
+      <textarea name="message" placeholder="Your Message" required></textarea><br>
+      <button type="submit">Send</button>
     </form>
-    <div class="socials">
-      <a href="https://www.linkedin.com/in/jabess-omane-75919b225" target="_blank">LinkedIn</a>
-      <a href="https://instagram.com/1sonof_glory" target="_blank">Instagram</a>
-      <p>Email: <a href="mailto:jabessomane19@gmail.com">jabessomane19@gmail.com</a></p>
-    </div>
-  </section>
+    <p>Connect: <a href="https://www.linkedin.com/in/jabess-omane-75919b225" target="_blank">LinkedIn</a> | <a href="https://instagram.com/1sonof_glory" target="_blank">Instagram</a></p>
+  </div>
 
   <script>
-    const username = 'omanijabess47';
-    const rssToJson = `https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@${username}`;
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+    }
 
-    fetch(rssToJson)
-      .then(response => response.json())
-      .then(data => {
-        const postsDiv = document.getElementById('medium-posts');
-        const posts = data.items.slice(0, 5);
-        postsDiv.innerHTML = '';
-        posts.forEach(post => {
-          const postEl = document.createElement('div');
-          postEl.classList.add('post');
-          postEl.innerHTML = `
-            <h3><a href="${post.link}" target="_blank">${post.title}</a></h3>
-            <p>${post.description.replace(/(<([^>]+)>)/gi, "").slice(0, 200)}...</p>
-          `;
-          postsDiv.appendChild(postEl);
-        });
-      })
-      .catch(error => {
-        document.getElementById('medium-posts').innerText = 'Unable to load Medium posts.';
-        console.error(error);
-      });
-
-    const sections = document.querySelectorAll('section');
-    window.addEventListener('scroll', () => {
-      const triggerBottom = window.innerHeight / 1.2;
-      sections.forEach(section => {
-        const sectionTop = section.getBoundingClientRect().top;
-        if (sectionTop < triggerBottom) {
-          section.classList.add('visible');
+    const sections = document.querySelectorAll(".section");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
         }
       });
+    }, { threshold: 0.1 });
+
+    sections.forEach(section => {
+      observer.observe(section);
     });
   </script>
 </body>
-
 </html>
