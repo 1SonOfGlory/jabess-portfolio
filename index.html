@@ -136,12 +136,12 @@
 
     /* Section styles */
     .section {
-      padding: 60px 20px;
+      padding: 40px 20px;
       opacity: 0;
       transform: translateY(30px);
       transition: opacity 1s ease, transform 1s ease;
       max-width: 900px;
-      margin: 0 auto 80px auto;
+      margin: 0 auto 60px auto;
     }
 
     .section.visible {
@@ -240,25 +240,6 @@
       gap: 20px;
     }
 
-    #mentor-list div {
-      animation: swap 21s linear infinite;
-    }
-
-    @keyframes swap {
-      0%, 100% { opacity: 1; }
-      33% { opacity: 0; }
-      66% { opacity: 1; }
-    }
-
-    a {
-      color: var(--accent-color);
-      text-decoration: none;
-    }
-
-    a:visited {
-      color: var(--accent-color);
-    }
-
     /* Under construction styling */
     .under-construction {
       font-style: italic;
@@ -266,6 +247,31 @@
       font-weight: 700;
       font-size: 1.2rem;
       margin-top: 20px;
+    }
+
+    .socials {
+      margin-top: 20px;
+    }
+
+    .socials a {
+      margin-right: 20px;
+      font-size: 1.2rem;
+      color: var(--accent-color);
+      text-decoration: none;
+    }
+
+    .socials a:hover {
+      color: #a0d8d8;
+    }
+
+    .resources a {
+      color: var(--accent-color);
+      text-decoration: none;
+      font-size: 1.1rem;
+    }
+
+    .resources a:hover {
+      color: #a0d8d8;
     }
 
   </style>
@@ -279,6 +285,8 @@
       <li><a href="#projects">Projects</a></li>
       <li><a href="#works">Writings</a></li>
       <li><a href="#recommendations">Mentors</a></li>
+      <li><a href="#socials">Socials</a></li>
+      <li><a href="#resources">Resources</a></li>
     </ul>
     <div class="hamburger" id="hamburger">
       <div></div>
@@ -352,6 +360,33 @@
       <div>Malcolm Gladwell</div>
       <div>Susan Athey</div>
     </div>
+  </div>
+
+  <div class="section" id="socials">
+    <h2>Socials</h2>
+    <div class="socials">
+      <a href="https://www.linkedin.com/in/jabess-omane-75919b225" target="_blank">LinkedIn</a>
+      <a href="https://medium.com/@omanijabess47" target="_blank">Medium</a>
+      <a href="mailto:jabessomane19@gmail.com">Email</a>
+    </div>
+  </div>
+
+  <div class="section" id="resources">
+    <h2>Resources</h2>
+    <h3>Videos</h3>
+    <ul>
+      <li><a href="https://youtu.be/BQ2_BwqcFsc?si=RnPPcI4GcJ6uDp8R" target="_blank">David Epstein</a></li>
+      <li><a href="https://youtu.be/XI1RUNPh8cg?si=AFXNAPq4lnnU5-LG" target="_blank">Jens Ludwig</a></li>
+      <li><a href="https://youtu.be/HpiZTvlWx2g?si=osLkLW2MMIr4Iep1" target="_blank">Malcolm Gladwell</a></li>
+      <li><a href="https://youtu.be/5X7deZ3WUvc?si=hmpm_qkFvlnI9DXz" target="_blank">Malcolm Gladwell (Part 2)</a></li>
+    </ul>
+
+    <h3>AI/ML/Data Science Courses/Resources</h3>
+    <ul>
+      <li><a href="https://www.turing.ac.uk/courses" target="_blank">Alan Turing Institute</a></li>
+      <li><a href="https://www.deeplearning.ai/" target="_blank">DeepLearning.ai (Andrew Ng)</a></li>
+      <li><a href="https://www.ml4publicpolicy.com/" target="_blank">Machine Learning for Public Policy</a></li>
+    </ul>
   </div>
 
   <script>
