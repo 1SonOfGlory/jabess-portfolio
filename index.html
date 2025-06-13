@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,13 +10,13 @@
     :root {
       --bg-color: #fff7f0;
       --text-color: #222;
-      --accent-color: #0d3b3b; /* dark teal */
+      --accent-color: #0d3b3b;
     }
 
     body.dark-mode {
       --bg-color: #121212;
       --text-color: #f0f0f0;
-      --accent-color: #00796b; /* dark teal for dark mode */
+      --accent-color: #00796b;
     }
 
     body {
@@ -31,7 +32,6 @@
       scroll-behavior: smooth;
     }
 
-    /* Sticky Nav */
     nav {
       position: sticky;
       top: 0;
@@ -71,7 +71,6 @@
       color: #a0d8d8;
     }
 
-    /* Hamburger menu for small screens */
     .hamburger {
       display: none;
       flex-direction: column;
@@ -86,7 +85,6 @@
       border-radius: 2px;
     }
 
-    /* Responsive Nav */
     @media (max-width: 768px) {
       nav ul {
         position: fixed;
@@ -111,7 +109,6 @@
       }
     }
 
-    /* Scroll to Top Button */
     #scrollTopBtn {
       position: fixed;
       bottom: 40px;
@@ -134,7 +131,6 @@
       visibility: visible;
     }
 
-    /* Section styles */
     .section {
       padding: 40px 20px;
       opacity: 0;
@@ -158,7 +154,6 @@
       position: relative;
     }
 
-    /* Hero: image left, about right */
     .hero {
       display: flex;
       flex-wrap: wrap;
@@ -198,7 +193,6 @@
       line-height: 1.4;
     }
 
-    /* Lists */
     .section ul {
       display: flex;
       flex-wrap: wrap;
@@ -240,7 +234,6 @@
       gap: 20px;
     }
 
-    /* Under construction styling */
     .under-construction {
       font-style: italic;
       color: var(--accent-color);
@@ -276,6 +269,7 @@
 
   </style>
 </head>
+
 <body>
   <nav>
     <div class="logo">Jabess Omane</div>
@@ -299,7 +293,7 @@
 
   <header>
     <div class="hero">
-      <img id="profile-pic" src="profile.jpg" alt="Profile Picture" />
+      <img id="profile-pic" src="jabess-portfolio/jabess.jpg" alt="Profile Picture" />
       <div class="hero-text">
         <h1>Jabess Omane</h1>
         <p><em>Data Science and Machine Learning for Social Sciences</em></p>
@@ -318,125 +312,89 @@
     <p>Machine Learning</p>
     <p>Programming with C++, MATLAB, Python, R</p>
     <p>Statistics</p>
-    <p>Writing</p>
+    <p>Deep Learning</p>
   </div>
 
   <div class="section" id="projects">
     <h2>Projects</h2>
-    <p class="under-construction">Projects are still marinating... Stay tuned!</p>
+    <p>Ongoing projects...</p>
   </div>
 
   <div class="section" id="works">
     <h2>Medium Articles</h2>
-    <div id="medium-posts">Loading stories...</div>
-    <script>
-      const username = 'omanijabess47';
-      const rssToJson = `https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@${username}`;
-
-      fetch(rssToJson)
-        .then((response) => response.json())
-        .then((data) => {
-          const container = document.getElementById('medium-posts');
-          container.innerHTML = '';
-          data.items.slice(0, 6).forEach(post => {
-            const div = document.createElement('div');
-            div.className = 'post';
-            div.innerHTML = `<a href="${post.link}" target="_blank" rel="noopener noreferrer">${post.title}</a>`;
-            container.appendChild(div);
-          });
-        })
-        .catch(() => {
-          document.getElementById('medium-posts').innerText = 'Failed to load stories.';
-        });
-    </script>
+    <div id="medium-posts">
+      <div class="post">
+        <h3>Title 1</h3>
+        <p>Summary of Article 1...</p>
+      </div>
+      <div class="post">
+        <h3>Title 2</h3>
+        <p>Summary of Article 2...</p>
+      </div>
+    </div>
   </div>
 
   <div class="section" id="recommendations">
-    <h2>Mentors</h2>
-    <div id="mentor-list">
-      <div>Abdoulaye Diack</div>
-      <div>Daniel Goleman</div>
-      <div>Jens Ludwig</div>
-      <div>Malcolm Gladwell</div>
-      <div>Susan Athey</div>
-    </div>
+    <h2>Mentors & Recommendations</h2>
+    <p>Recommendations from mentors...</p>
   </div>
 
   <div class="section" id="resources">
     <h2>Resources</h2>
-    <h3>Videos</h3>
-    <ul>
-      <li><a href="https://youtu.be/BQ2_BwqcFsc?si=RnPPcI4GcJ6uDp8R" target="_blank">David Epstein</a></li>
-      <li><a href="https://youtu.be/XI1RUNPh8cg?si=AFXNAPq4lnnU5-LG" target="_blank">Jens Ludwig</a></li>
-      <li><a href="https://youtu.be/HpiZTvlWx2g?si=osLkLW2MMIr4Iep1" target="_blank">Malcolm Gladwell</a></li>
-      <li><a href="https://youtu.be/5X7deZ3WUvc?si=hmpm_qkFvlnI9DXz" target="_blank">Malcolm Gladwell (Part 2)</a></li>
-    </ul>
-
-    <h3>AI/ML/Data Science Courses/Resources</h3>
-    <ul>
-      <li><a href="https://www.turing.ac.uk/courses" target="_blank">Alan Turing Institute</a></li>
-      <li><a href="https://www.deeplearning.ai/" target="_blank">DeepLearning.ai (Andrew Ng)</a></li>
-      <li><a href="https://www.ml4publicpolicy.com/" target="_blank">Machine Learning for Public Policy</a></li>
-    </ul>
-
-    <h3>Books</h3>
-    <ul>
-      <li><a href="#" target="_blank">Fundamental Research Statistics for the Behavioral Sciences</a></li>
-    </ul>
-
-    <h3>Papers</h3>
-    <ul>
-      <li><a href="https://www.science.org/doi/10.1126/science.aaf4402" target="_blank">Athey, S. (2017). Beyond prediction: Using big data for policy problems.</a></li>
-      <li><a href="https://www.aeaweb.org/articles?id=10.1257/aer.p20151116" target="_blank">Kleinberg, J., Ludwig, J., Mullainathan, S., and Obermeyer, Z. (2015). Prediction policy problems.</a></li>
-      <li><a href="https://academic.oup.com/qje/article/133/1/237/2362349" target="_blank">Kleinberg, J., Lakkaraju, H., Leskovec, J., Ludwig, J., and Mullainathan, S. (2017). Human decisions and machine predictions.</a></li>
-      <li><a href="https://arxiv.org/pdf/1903.10075" target="_blank">Machine Learning Methods Economists Should Know About</a></li>
-    </ul>
+    <p><a href="#">Link to Educational Resources</a></p>
   </div>
 
   <div class="section" id="reach-me">
     <h2>Reach Me</h2>
+    <p>Get in touch!</p>
     <div class="socials">
-      <a href="https://www.linkedin.com/in/jabess-omane-75919b225" target="_blank">LinkedIn</a>
-      <a href="https://medium.com/@omanijabess47" target="_blank">Medium</a>
-      <a href="mailto:jabessomane19@gmail.com">Email</a>
+      <a href="https://linkedin.com/in/jabessomane">LinkedIn</a>
+      <a href="https://twitter.com/jabessomane">Twitter</a>
     </div>
   </div>
 
   <script>
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('nav-links');
-
-    hamburger.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
-    });
-
-    const scrollBtn = document.getElementById('scrollTopBtn');
-
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 200) {
-        scrollBtn.classList.add('show');
+    // Scroll to top button
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+    window.addEventListener("scroll", () => {
+      if (document.documentElement.scrollTop > 300) {
+        scrollTopBtn.classList.add("show");
       } else {
-        scrollBtn.classList.remove('show');
+        scrollTopBtn.classList.remove("show");
       }
     });
 
-    scrollBtn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    scrollTopBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
-    const sections = document.querySelectorAll('.section');
+    // Hamburger Menu Toggle
+    const hamburger = document.getElementById("hamburger");
+    const navLinks = document.getElementById("nav-links");
 
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
+    hamburger.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+    });
+
+    // Intersection Observer for section fade-in animation
+    const sections = document.querySelectorAll(".section");
+    const observerOptions = {
+      root: null,
+      threshold: 0.25,
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+          entry.target.classList.add("visible");
         }
       });
-    }, { threshold: 0.1 });
+    }, observerOptions);
 
-    sections.forEach(section => {
+    sections.forEach((section) => {
       observer.observe(section);
     });
   </script>
 </body>
+
 </html>
