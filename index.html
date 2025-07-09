@@ -1,400 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Jabess Omane | Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg-color: #fff7f0;
-      --text-color: #222;
-      --accent-color: #0d3b3b;
-    }
-
-    body.dark-mode {
-      --bg-color: #121212;
-      --text-color: #f0f0f0;
-      --accent-color: #00796b;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      margin: 0;
-      padding: 0;
-      transition: background-color 0.5s, color 0.5s;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    nav {
-      position: sticky;
-      top: 0;
-      background: var(--accent-color);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 20px;
-      z-index: 10000;
-      color: white;
-      font-weight: 700;
-      font-family: 'Playfair Display', serif;
-    }
-
-    nav .logo {
-      font-size: 1.5rem;
-      letter-spacing: 1.5px;
-    }
-
-    nav ul {
-      display: flex;
-      gap: 1.5rem;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1rem;
-      transition: color 0.3s ease;
-    }
-
-    nav ul li a:hover {
-      color: #a0d8d8;
-    }
-
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      gap: 5px;
-    }
-
-    .hamburger div {
-      width: 25px;
-      height: 3px;
-      background-color: white;
-      border-radius: 2px;
-    }
-
-    @media (max-width: 768px) {
-      nav ul {
-        position: fixed;
-        top: 60px;
-        right: 0;
-        background: var(--accent-color);
-        flex-direction: column;
-        width: 200px;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease;
-        border-bottom-left-radius: 10px;
-        border-bottom-right-radius: 10px;
-      }
-
-      nav ul.open {
-        max-height: 300px;
-      }
-
-      .hamburger {
-        display: flex;
-      }
-    }
-
-    #scrollTopBtn {
-      position: fixed;
-      bottom: 40px;
-      right: 30px;
-      background-color: var(--accent-color);
-      color: white;
-      border: none;
-      padding: 12px 15px;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 20px;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.4s, visibility 0.4s;
-      z-index: 9999;
-    }
-
-    #scrollTopBtn.show {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .section {
-      padding: 40px 20px;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 1s ease, transform 1s ease;
-      max-width: 900px;
-      margin: 0 auto 60px auto;
-    }
-
-    .section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    header {
-      background-color: var(--accent-color);
-      color: white;
-      text-align: center;
-      padding: 80px 20px;
-      font-family: 'Playfair Display', serif;
-      position: relative;
-    }
-
-    .hero {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      gap: 40px;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 20px 0 10px;
-    }
-
-    #profile-pic {
-      width: 320px;
-      height: 320px;
-      object-fit: cover;
-      border-radius: 50%;
-      border: 4px solid white;
-      flex-shrink: 0;
-    }
-
-    .hero-text {
-      flex: 1 1 300px;
-      text-align: left;
-    }
-
-    .hero-text h1 {
-      font-size: 3rem;
-      margin-bottom: 10px;
-      font-family: 'Playfair Display', serif;
-      letter-spacing: 2px;
-    }
-
-    .hero-text p {
-      font-style: italic;
-      font-size: 1.3rem;
-      margin-top: 20px;
-      line-height: 1.4;
-    }
-
-    .section ul {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .section ul li {
-      flex: 1 1 calc(50% - 20px);
-      background: rgba(0, 0, 0, 0.05);
-      padding: 10px;
-      border-radius: 8px;
-      transition: opacity 1s ease-in-out;
-    }
-
-    #medium-posts {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-    }
-
-    .post {
-      background-color: rgba(0, 0, 0, 0.05);
-      border-radius: 8px;
-      padding: 20px;
-      transition: all 0.5s ease;
-    }
-
-    .post:hover {
-      transform: translateY(-5px);
-      background-color: rgba(0, 0, 0, 0.1);
-    }
-
-    .three-column {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-
-    .under-construction {
-      font-style: italic;
-      color: var(--accent-color);
-      font-weight: 700;
-      font-size: 1.2rem;
-      margin-top: 20px;
-    }
-
-    .socials {
-      margin-top: 20px;
-    }
-
-    .socials a {
-      margin-right: 20px;
-      font-size: 1.2rem;
-      color: var(--accent-color);
-      text-decoration: none;
-    }
-
-    .socials a:hover {
-      color: #a0d8d8;
-    }
-
-    .resources a {
-      color: var(--accent-color);
-      text-decoration: none;
-      font-size: 1.1rem;
-    }
-
-    .resources a:hover {
-      color: #a0d8d8;
-    }
-
-  </style>
 </head>
-
 <body>
+
   <nav>
     <div class="logo">Jabess Omane</div>
     <ul id="nav-links">
+      <li><a href="about.html">About</a></li>
       <li><a href="#interests">Interests</a></li>
-      <li><a href="#skills">Skills</a></li>
       <li><a href="#projects">Projects</a></li>
-      <li><a href="#works">Medium Articles</a></li>
-      <li><a href="#recommendations">Mentors</a></li>
       <li><a href="#resources">Resources</a></li>
       <li><a href="#reach-me">Reach Me</a></li>
     </ul>
     <div class="hamburger" id="hamburger">
-      <div></div>
-      <div></div>
-      <div></div>
+      <div></div><div></div><div></div>
     </div>
+    <button id="darkToggle">🌙</button>
   </nav>
 
   <button id="scrollTopBtn" title="Scroll to top">&#8679;</button>
 
   <header>
     <div class="hero">
-      <img id="profile-pic" src="jabess-portfolio/jabess.jpg" alt="Profile Picture" />
+      <img id="profile-pic" src="jabess-portfolio/jabess.jpg" alt="Jabess Omane" />
       <div class="hero-text">
         <h1>Jabess Omane</h1>
-        <p><em>Data Science and Machine Learning for Social Sciences</em></p>
+        <p><em>AI + Data Science for Education and Society</em></p>
       </div>
     </div>
   </header>
 
   <div class="section" id="interests">
-    <h2>Interests</h2>
-    <p>Capitalization Constraints in Educational Sector, Machine Learning in Criminal Justice, Behavioural Studies, Economics, Psychology</p>
-  </div>
-
-  <div class="section" id="skills">
-    <h2>Skills</h2>
-    <p>Data Visualization and Analytics</p>
-    <p>Machine Learning</p>
-    <p>Programming with C++, MATLAB, Python, R</p>
-    <p>Statistics</p>
-    <p>Deep Learning</p>
+    <h2>Interests & Skills</h2>
+    <ul>
+      <li>AI for Education & Society</li>
+      <li>Behavioral Science, Psychology, Economics</li>
+      <li>Machine Learning & Deep Learning</li>
+      <li>Python, R, MATLAB, C++</li>
+      <li>Data Visualization & Statistics</li>
+    </ul>
   </div>
 
   <div class="section" id="projects">
     <h2>Projects</h2>
-    <p>Ongoing projects...</p>
-  </div>
-
-  <div class="section" id="works">
-    <h2>Medium Articles</h2>
-    <div id="medium-posts">
-      <div class="post">
-        <h3>Title 1</h3>
-        <p>Summary of Article 1...</p>
-      </div>
-      <div class="post">
-        <h3>Title 2</h3>
-        <p>Summary of Article 2...</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="section" id="recommendations">
-    <h2>Mentors & Recommendations</h2>
-    <p>Recommendations from mentors...</p>
+    <ul>
+      <li>Sign Language Translator using MediaPipe + Custom Model</li>
+      <li>Criminal Justice Reform Dashboard (R & Shiny)</li>
+      <li>YOLOv8 for Traffic Violation Detection</li>
+    </ul>
   </div>
 
   <div class="section" id="resources">
     <h2>Resources</h2>
-    <p><a href="#">Link to Educational Resources</a></p>
+    <div class="three-column resources">
+      <div>
+        <h3>Mentors</h3>
+        <ul>
+          <li><a href="https://andrewng.org">Andrew Ng</a></li>
+          <li><a href="#">Dr. Yuebing Liang</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Books</h3>
+        <ul>
+          <li><a href="#">Deep Learning with Python – François Chollet</a></li>
+          <li><a href="#">The Signal and the Noise – Nate Silver</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Tutorials</h3>
+        <ul>
+          <li><a href="https://www.kaggle.com/learn">Kaggle Learn</a></li>
+          <li><a href="https://fast.ai/">Fast.ai</a></li>
+        </ul>
+      </div>
+    </div>
   </div>
 
   <div class="section" id="reach-me">
     <h2>Reach Me</h2>
-    <p>Get in touch!</p>
     <div class="socials">
-      <a href="https://linkedin.com/in/jabessomane">LinkedIn</a>
-      <a href="https://twitter.com/jabessomane">Twitter</a>
-    </div>
-  </div>
-
-  <script>
-    // Scroll to top button
-    const scrollTopBtn = document.getElementById("scrollTopBtn");
-    window.addEventListener("scroll", () => {
-      if (document.documentElement.scrollTop > 300) {
-        scrollTopBtn.classList.add("show");
-      } else {
-        scrollTopBtn.classList.remove("show");
-      }
-    });
-
-    scrollTopBtn.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-
-    // Hamburger Menu Toggle
-    const hamburger = document.getElementById("hamburger");
-    const navLinks = document.getElementById("nav-links");
-
-    hamburger.addEventListener("click", () => {
-      navLinks.classList.toggle("open");
-    });
-
-    // Intersection Observer for section fade-in animation
-    const sections = document.querySelectorAll(".section");
-    const observerOptions = {
-      root: null,
-      threshold: 0.25,
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-        }
-      });
-    }, observerOptions);
-
-    sections.forEach((section) => {
-      observer.observe(section);
-    });
-  </script>
-</body>
-
-</html>
+      <a href="mailto:your-email@example.com">Email</a>
+      <a href="https://linkedin.com/in/jabessomane">Linke
